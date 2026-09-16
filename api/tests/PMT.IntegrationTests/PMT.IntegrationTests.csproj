@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/PMT.Domain/PMT.Domain.csproj" />
+    <ProjectReference Include="../../src/PMT.Application/PMT.Application.csproj" />
+    <ProjectReference Include="../../src/PMT.Infrastructure/PMT.Infrastructure.csproj" />
+    <ProjectReference Include="../../src/PMT.Api/PMT.Api.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>

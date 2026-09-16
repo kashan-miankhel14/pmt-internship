@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../PMT.Application/PMT.Application.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Dapper" />
+    <PackageReference Include="Microsoft.Data.SqlClient" />
+    <PackageReference Include="Isopoh.Cryptography.Argon2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Ai/Prompts/*.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

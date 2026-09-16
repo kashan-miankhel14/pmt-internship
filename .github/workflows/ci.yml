@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backend-unit:
+    name: Backend build and unit tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Restore
+        run: dotnet restore PMT.sln
+      - name: Build
+        run: dotnet build PMT.sln -c Release --no-restore
+      - name: Unit tests
+        run: dotnet test tests/PMT.UnitTests/PMT.UnitTests.csproj -c Release --no-build --verbosity normal
+
+  backend-sql-contracts:
+    name: SQL contract tests
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Restore and build
+        run: dotnet restore PMT.sln && dotnet build PMT.sln -c Release --no-restore
+      - name: SQL contract tests
+        run: dotnet test tests/PMT.IntegrationTests/PMT.IntegrationTests.csproj -c Release --no-build --verbosity normal
+
+  frontend:
+    name: Frontend lint and build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+      - name: Lint
+        run: npm run lint
+      - name: Build
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:5133/api/v1
+          NEXT_PUBLIC_HUB_URL: http://localhost:5133/hubs/notifications
+          NODE_ENV: production
+        run: npm run build

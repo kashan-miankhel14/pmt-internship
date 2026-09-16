@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>PMT-API-Development-Secrets</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../PMT.Application/PMT.Application.csproj" />
+    <ProjectReference Include="../PMT.Infrastructure/PMT.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+</Project>

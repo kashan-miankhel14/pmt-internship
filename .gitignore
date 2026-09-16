@@ -1,0 +1,48 @@
+# .NET
+**/bin/
+**/obj/
+**/artifacts/
+**/publish/
+**/TestResults/
+*.user
+*.suo
+*.cache
+*.log
+*.tmp
+
+# Runtime and local configuration
+**/App_Data/
+**/uploads/
+.env
+.env.*
+!.env.example
+**/appsettings.Local.json
+**/appsettings.*.Local.json
+*.pem
+*.pfx
+*.p12
+*.key
+
+# Databases and backups
+*.db
+*.sqlite
+*.sqlite3
+*.bak
+**/database/backup/
+
+# Node/Next
+**/node_modules/
+**/.next/
+**/.cache/
+**/coverage/
+**/out/
+**/build/
+next-env.d.ts
+*.tsbuildinfo
+src/assets/iconify-icons/generated-icons.css
+src/assets/iconify-icons/generated-icons.js
+
+# Editor/OS
+.vs/
+.idea/
+.DS_Store

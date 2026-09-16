@@ -1,0 +1,15 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="zenithFaviconGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#142D4C" />
+      <stop offset="100%" stopColor="#326DA3" />
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="6" fill="#142D4C" />
+  <path
+    d="M8 8H24L14 17.5H24V24H8L18 14.5H8V8Z"
+    fill="#FFFFFF"
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+  />
+</svg>

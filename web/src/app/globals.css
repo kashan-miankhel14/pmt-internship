@@ -1,0 +1,456 @@
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme) important;
+@import 'tailwindcss/utilities.css' layer(utilities) important;
+@plugin 'tailwindcss-logical';
+
+@theme {
+  --radius-none: 0px;
+  --radius-xs: var(--mui-shape-customBorderRadius-xs);
+  --radius-sm: var(--mui-shape-customBorderRadius-sm);
+  --radius: var(--mui-shape-customBorderRadius-md);
+  --radius-md: var(--mui-shape-customBorderRadius-md);
+  --radius-lg: var(--mui-shape-customBorderRadius-lg);
+  --radius-xl: var(--mui-shape-customBorderRadius-xl);
+  --radius-2xl: 0.75rem;
+  --radius-3xl: 1rem;
+  --radius-4xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --color-primary: var(--primary-color);
+  --color-primaryLight: var(--mui-palette-primary-lightOpacity);
+  --color-primaryLighter: var(--mui-palette-primary-lighterOpacity);
+  --color-secondary: var(--mui-palette-secondary-main);
+  --color-error: var(--mui-palette-error-main);
+  --color-errorLight: var(--mui-palette-error-lightOpacity);
+  --color-errorLighter: var(--mui-palette-error-lighterOpacity);
+  --color-warning: var(--mui-palette-warning-main);
+  --color-info: var(--mui-palette-info-main);
+  --color-success: var(--mui-palette-success-main);
+  --color-textPrimary: var(--mui-palette-text-primary);
+  --color-textSecondary: var(--mui-palette-text-secondary);
+  --color-textDisabled: var(--mui-palette-text-disabled);
+  --color-actionActive: var(--mui-palette-action-active);
+  --color-actionHover: var(--mui-palette-action-hover);
+  --color-actionSelected: var(--mui-palette-action-selected);
+  --color-actionFocus: var(--mui-palette-action-focus);
+  --color-backgroundPaper: var(--mui-palette-background-paper);
+  --color-backgroundDefault: var(--mui-palette-background-default);
+  --color-backgroundChat: var(--mui-palette-customColors-chatBg);
+  --color-backdrop: var(--backdrop-color);
+  --color-facebook: #1E4169;
+  --color-twitter: #285586;
+  --color-linkedin: #326DA3;
+
+  --shadow-xs: var(--mui-customShadows-xs);
+  --shadow-sm: var(--mui-customShadows-sm);
+  --shadow-DEFAULT: var(--mui-customShadows-md);
+  --shadow-md: var(--mui-customShadows-md);
+  --shadow-lg: var(--mui-customShadows-lg);
+  --shadow-xl: var(--mui-customShadows-xl);
+  --shadow-primarySm: var(--mui-customShadows-primary-sm);
+  --shadow-primaryMd: var(--mui-customShadows-primary-md);
+  --shadow-primaryLg: var(--mui-customShadows-primary-lg);
+  --shadow-secondarySm: var(--mui-customShadows-secondary-sm);
+  --shadow-secondaryMd: var(--mui-customShadows-secondary-md);
+  --shadow-secondaryLg: var(--mui-customShadows-secondary-lg);
+  --shadow-errorSm: var(--mui-customShadows-error-sm);
+  --shadow-errorMd: var(--mui-customShadows-error-md);
+  --shadow-errorLg: var(--mui-customShadows-error-lg);
+  --shadow-warningSm: var(--mui-customShadows-warning-sm);
+  --shadow-warningMd: var(--mui-customShadows-warning-md);
+  --shadow-warningLg: var(--mui-customShadows-warning-lg);
+  --shadow-infoSm: var(--mui-customShadows-info-sm);
+  --shadow-infoMd: var(--mui-customShadows-info-md);
+  --shadow-infoLg: var(--mui-customShadows-info-lg);
+  --shadow-successSm: var(--mui-customShadows-success-sm);
+  --shadow-successMd: var(--mui-customShadows-success-md);
+  --shadow-successLg: var(--mui-customShadows-success-lg);
+
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 900px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1536px;
+  --breakpoint-2xl: 1920px;
+
+  --z-header: var(--header-z-index);
+  --z-footer: var(--footer-z-index);
+  --z-customizer: var(--customizer-z-index);
+  --z-search: var(--search-z-index);
+  --z-drawer: var(--drawer-z-index);
+}
+
+:root {
+  --border-radius: var(--mui-shape-borderRadius);
+  --border-color: var(--mui-palette-divider);
+  --primary-color: var(--mui-palette-primary-main);
+  --background-color: var(--mui-palette-background-default);
+  --background-color-rgb: var(--mui-palette-background-paperChannel);
+  --header-height: 54px;
+  --header-z-index: var(--mui-zIndex-appBar);
+  --footer-z-index: 10;
+  --customizer-z-index: var(--mui-zIndex-drawer);
+  --search-z-index: var(--mui-zIndex-tooltip);
+  --drawer-z-index: var(--mui-zIndex-drawer);
+  --backdrop-color: rgb(var(--mui-mainColorChannels-light) / 0.5);
+  --mui-mainColorChannels-shadow: var(--mui-mainColorChannels-lightShadow);
+}
+
+[data-dark] {
+  --backdrop-color: rgb(20 45 76 / 0.6);
+  --mui-mainColorChannels-shadow: var(--mui-mainColorChannels-darkShadow);
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 0 solid;
+    border-color: var(--border-color, currentColor);
+  }
+}
+
+html {
+  display: flex;
+  inline-size: 100%;
+  min-block-size: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul:not([class]) {
+  margin-block: 1rem;
+  padding-inline-start: 40px;
+}
+
+/*! Do not remove the following styles */
+/*
+  Fix the popout / submenu closing issue when using hover trigger to open the menu and using
+  perfectscrollbar where the bridge create with safe polygon by floating ui was not working
+*/
+[data-floating-ui-safe-polygon] .scrollbar-container {
+  pointer-events: auto;
+}
+
+[data-floating-ui-safe-polygon] .scrollbar-container .ps__rail-y {
+  pointer-events: none;
+}
+
+.ps__rail-y {
+  inset-inline-end: 0 !important;
+  inset-inline-start: auto !important;
+
+  & .ps__thumb-y {
+    inset-inline-end: 3px !important;
+    inset-inline-start: auto !important;
+    background-color: var(--mui-palette-divider);
+    inline-size: 6px;
+
+    &:hover,
+    &:focus,
+    &.ps--clicking {
+      background-color: var(--mui-palette-action-disabled) !important;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &.ps--clicking {
+    background-color: var(--mui-palette-action-hover) !important;
+  }
+
+  &:hover,
+  &:focus,
+  &.ps--clicking {
+    .ps__thumb-y {
+      background-color: var(--mui-palette-action-disabled) !important;
+    }
+  }
+}
+
+.ts-vertical-nav-root {
+  .ps__thumb-y {
+    inline-size: 4px;
+
+    &:hover,
+    &:focus,
+    &.ps--clicking {
+      inline-size: 6px;
+    }
+  }
+
+  .ps__rail-y {
+    inline-size: 10px;
+
+    &:hover,
+    &:focus,
+    &.ps--clicking {
+      background-color: transparent !important;
+
+      .ps__thumb-y {
+        inline-size: 6px;
+      }
+    }
+  }
+}
+
+:where([class^='tabler-']) {
+  font-size: 1.5rem;
+}
+
+/* Fix width issue for the input-otp component */
+input[autocomplete='one-time-code'][data-input-otp='true'] {
+  inline-size: 100% !important;
+}
+
+code {
+  font-family: inherit;
+  padding-block: 2px;
+  padding-inline: 4px;
+  border-radius: 4px;
+  font-size: 90%;
+  color: var(--mui-palette-info-main);
+  background-color: rgb(var(--mui-palette-info-mainChannel) / 0.08);
+  border: 0;
+}
+
+/* ==========================================================================
+   PMT shared animation utilities
+   --------------------------------------------------------------------------
+   Lightweight, dependency-free entrance animation used across the app. The
+   per-element `animation-delay` can be overridden inline (e.g. for staggered
+   table rows) because the inline longhand wins over the class shorthand.
+   ========================================================================== */
+@layer utilities {
+  .pmt-fade-in {
+    animation: pmt-fade-in 0.4s ease both;
+  }
+}
+
+@keyframes pmt-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Zenith Premium Motion & Transition Utilities
+   ========================================================================== */
+
+/* Slide-in up animation with clean cubic-bezier easing */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Elastic scale pop animation */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pulse glow animation for statuses and active indicators */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0px rgba(20, 45, 76, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(20, 45, 76, 0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Interactive elevating hover states for cards */
+.hover-elevate {
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.hover-elevate:hover {
+  transform: translateY(-5px) scale(1.01) !important;
+  box-shadow: 0 12px 20px -8px rgba(20, 45, 76, 0.15), 0 4px 20px 0px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Interactive scaling hover states for buttons/chips/nav items */
+.hover-grow {
+  transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.2s ease !important;
+}
+
+.hover-grow:hover {
+  transform: scale(1.04) !important;
+  filter: brightness(1.05);
+}
+
+.pulse-indicator {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+/* Spin animation for vector orbits */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pulsing text/icon animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 120s linear infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ── High Density Compact UI Mode ── */
+.MuiCardContent-root {
+  padding: 1rem !important;
+}
+
+.MuiCardContent-root:last-child {
+  padding-bottom: 1rem !important;
+}
+
+.MuiTableCell-root {
+  padding: 6px 12px !important;
+  font-size: 0.8125rem !important;
+}
+
+.MuiTableCell-head {
+  padding: 8px 12px !important;
+  font-size: 0.75rem !important;
+}
+
+.MuiTableRow-root {
+  min-height: 38px;
+}
+
+.MuiDialogContent-root {
+  padding: 1rem 1.25rem !important;
+}
+
+.MuiDialogActions-root {
+  padding: 0.75rem 1.25rem !important;
+}
+
+.MuiTab-root {
+  min-height: 40px !important;
+  padding: 6px 12px !important;
+  font-size: 0.8125rem !important;
+}
+
+.MuiTabs-root {
+  min-height: 40px !important;
+}
+
+.MuiButton-sizeSmall {
+  padding: 4px 10px !important;
+  font-size: 0.8125rem !important;
+}
+
+.MuiInputBase-sizeSmall {
+  font-size: 0.8125rem !important;
+}
+
+/* ── Scrollbar Controls ── */
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.top-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--mui-palette-primary-main) var(--mui-palette-action-hover);
+}
+
+.top-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.top-scrollbar::-webkit-scrollbar-track {
+  background: var(--mui-palette-action-hover);
+  border-radius: 4px;
+}
+
+.top-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--mui-palette-primary-main);
+  border-radius: 4px;
+}
+
+/* ── UI Rendering & Scrolling Performance Optimizations ── */
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Hardware accelerated card & table renders */
+.MuiCard-root,
+.MuiPaper-root,
+.MuiTable-root,
+.MuiTableRow-root {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Smooth transitions without layout recalculation */
+button,
+a,
+.MuiButtonBase-root {
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+

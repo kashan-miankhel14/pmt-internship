@@ -1,0 +1,66 @@
+@baseUrl = https://localhost:7133/api/v1
+@token = paste-access-token-here
+
+### Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "userNameOrEmail": "admin",
+  "password": "replace-with-your-password"
+}
+
+### Refresh token
+POST {{baseUrl}}/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "paste-refresh-token-here"
+}
+
+### Departments
+GET {{baseUrl}}/departments?page=1&pageSize=25&search=
+Authorization: Bearer {{token}}
+
+### Create department
+POST {{baseUrl}}/departments
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "code": "IT",
+  "name": "Information Technology",
+  "description": "Technology department",
+  "active": true
+}
+
+### Projects
+GET {{baseUrl}}/projects?page=1&pageSize=25
+Authorization: Bearer {{token}}
+
+### Create project
+POST {{baseUrl}}/projects
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "key": "PMT",
+  "name": "Project Management Tool",
+  "description": "Internal project management platform",
+  "ownerUserId": 1,
+  "status": "Active",
+  "startDate": "2026-07-10",
+  "targetDate": "2026-12-31",
+  "active": true
+}
+
+### Current notifications
+GET {{baseUrl}}/notifications/mine?unreadOnly=true
+Authorization: Bearer {{token}}
+
+### Workload report
+GET {{baseUrl}}/reports/workload
+Authorization: Bearer {{token}}
+
+### Public health check
+GET https://localhost:7133/health

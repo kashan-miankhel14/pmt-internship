@@ -1,0 +1,37 @@
+namespace PMT.Domain.Enums;
+
+public enum StoredProcedure
+{
+    Department,
+    User,
+    Role,
+    Permission,
+    RolePermission,
+    RefreshToken,
+    Project,
+    UserStory,
+    Task,
+    Issue,
+    Comment,
+    Attachment,
+    GitLink,
+    Notification,
+    NotificationPreference,
+    JobQueue,
+    AuditLog,
+    IpWhitelist,
+    Report,
+    Admin,
+    Team,
+    TeamMember,
+    ProjectMember,
+    ProjectTeam,
+    ProjectRole,
+    Sprint,
+    BoardColumn,
+    Workflow,
+    WorkflowStatus,
+    WorkflowTransition,
+    WorkflowScheme,
+    IssueHistory
+}
